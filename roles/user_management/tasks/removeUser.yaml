@@ -1,0 +1,12 @@
+- name: delete user playbook
+  hosts: CDC
+  become: true
+  
+  tasks:
+    - name: remove {{ item }} user!
+      ansible.builtin.user:
+        name: "{{ item }}"
+        state: "absent"
+        remove: true
+      with_lines: cat "variables/removeUser.yaml"
+    

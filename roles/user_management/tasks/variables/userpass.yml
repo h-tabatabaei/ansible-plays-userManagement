@@ -1,0 +1,3 @@
+users:
+  - { name: user1, pass: demo@123 }
+  - { name: user2, pass: demo@123 }

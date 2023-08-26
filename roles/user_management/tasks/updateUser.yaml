@@ -1,0 +1,14 @@
+- name: change password playbook
+  hosts: BMI_DAM
+  become: true
+  vars_files:
+    - ./variables/userpass.yml
+  tasks:
+    - name: change user's password
+      ansible.builtin.user:
+        name: "{{ item.name }}"
+        state: present
+        password: "{{ item.pass | password_hash('sha512') }}"
+        append: true
+        groups: wheel
+      with_items: "{{ users }}"
